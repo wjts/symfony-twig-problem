@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  php:
+    image: php-custom
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+  nginx:
+    image: nginx-custom
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./public/:/app/public/
+    ports:
+      - 8000:80
